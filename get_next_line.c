@@ -1,5 +1,16 @@
-#include <unistd.h>
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moben-ta <moben-ta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/15 15:30:51 by moben-ta          #+#    #+#             */
+/*   Updated: 2024/11/15 16:13:49 by moben-ta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "./get_next_line.h"
 
 #define BUFFER_SIZE 42 
 
@@ -21,7 +32,7 @@ char read_to_newline(int fd, char **remaind)
         if (new_line_search)
         {
             *new_line_search = '\0';
-            *remaind = ft_strdu(new_line_search + 1);
+            *remaind = ft_strdup(new_line_search + 1);
         }
 
         line = ft_strjoin(line, buffer);
@@ -31,7 +42,8 @@ char read_to_newline(int fd, char **remaind)
     return line;
 }
 
-char *get_next_line(int fd) {
+char *get_next_line(fd)
+{
     static char *remaind;
     char *line;
 
