@@ -1,47 +1,43 @@
-#include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#define BUFFER_SIZE 1  // Reading one character at a time
+#define BUFFER_SIZE 42 
 
-char *get_next_line(int fd) {
+char *get_next_line(int fd)
+{
     char buffer[BUFFER_SIZE];
+    ssize_t bytes_read;
     char *line = NULL;
-    char *temp = NULL;
-    int len = 0;
-    int bytes_read;
+    size_t line_len = 0;
 
-    if (fd < 0 || BUFFER_SIZE <= 0) {
-        return NULL;  // Invalid file descriptor or buffer size
-    }
-
-    line = (char *)malloc(1);
-    if (!line) return NULL;
-    line[0] = '\0';
-
-    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0) {
-        if (buffer[0] == '\n') break;
-
-        temp = (char *)malloc(len + 2);  // Allocating space for new char + '\0'
-        if (!temp) {
-            free(line);
-            return NULL;
-        }
-
-        for (int i = 0; i < len; i++) temp[i] = line[i];  // Copy old data to new space
-        temp[len] = buffer[0];
-        temp[len + 1] = '\0';
-
-        free(line);
-        line = temp;
-        len++;
-    }
-
-    // If no bytes were read and no line was constructed, return NULL
-    if (bytes_read == 0 && len == 0) {
-        free(line);
+    if (fd < 0 || buffer == NULL || BUFFER_SIZE == 0)
         return NULL;
+    while (bytes_read = read(fd, buffer, BUFFER_SIZE) > 0)
+    {
+        buffer[bytes_read] = '\0';
+
+        //search if theres a \n
+        char *new_line_search = ft_strchr(buffer, '\n');
     }
 
-    return line;
+
+    return bytes_read;
 }
 
+
+// int main()
+// {
+//     int fd = open("med.txt", O_RDONLY);
+//     if (fd == -1) {
+//         perror("Failed to open file");
+//         return 1;
+//     }
+
+//     printf("%s", get_next_line(fd));
+
+//     close(fd);
+
+//     return 0;
+// }
