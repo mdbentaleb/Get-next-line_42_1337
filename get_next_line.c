@@ -6,24 +6,22 @@
 /*   By: moben-ta <moben-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:30:51 by moben-ta          #+#    #+#             */
-/*   Updated: 2024/11/15 16:13:49 by moben-ta         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:54:54 by moben-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./get_next_line.h"
 
-#define BUFFER_SIZE 42 
-
-char read_to_newline(int fd, char **remaind)
+static char *read_to_newline(int fd, char **remaind)
 {
     char buffer[BUFFER_SIZE + 1];
     ssize_t bytes_read;
     char *line = NULL;
     size_t line_len = 0;
 
-    if (fd < 0 || buffer == NULL || BUFFER_SIZE == 0)
+    if (fd < 0 || BUFFER_SIZE == 0)
         return NULL;
-    while (bytes_read = read(fd, buffer, BUFFER_SIZE) > 0)
+    while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
     {
         buffer[bytes_read] = '\0';
 
@@ -56,7 +54,7 @@ char *get_next_line(fd)
         free(remaind);
         remaind = NULL;
     } else {
-        line = read_until_newline(fd, &remaind);
+        line = read_to_newline(fd, &remaind);
     }
 
     return line;
