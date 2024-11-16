@@ -6,7 +6,7 @@
 /*   By: moben-ta <moben-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 17:03:20 by moben-ta          #+#    #+#             */
-/*   Updated: 2024/11/16 19:30:03 by moben-ta         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:53:11 by moben-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static int	check_new_line(char *line)
 
 char	*get_next_line(int fd)
 {
-	char	buffer[BUFFER_SIZE + 1];
-	char	*line;
-	char	*remain;
-	int		br;
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*line;
+	char		*remain;
+	int			br;
 
 	line = malloc(1);
 	if (!line)

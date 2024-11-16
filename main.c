@@ -4,9 +4,11 @@
 
 int	main()
 {
-	char *s1 = "hello\nworld";
-	// char *s2 = "world";
-	char *r = after_new_line(s1);
-	
-	printf("%s", r);
+	int fd = open("med.txt", O_RDONLY);
+	char *s ;
+	while (s != '\0')
+	{
+		s = get_next_line(fd);
+		printf("%s", s);
+	}
 }
