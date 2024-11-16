@@ -14,7 +14,7 @@ char	*get_next_line(int fd)
 	if (remain)
 		line = ft_strjoin(remain, line);
 	br = 1;
-	while (br)
+	while (br > 0)
 	{
 		br = read(fd, buffer, BUFFER_SIZE);
 		if (br < 0)
