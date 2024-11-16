@@ -2,12 +2,11 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-
 int	main()
 {
-	int	fd = open("med.txt", O_RDONLY);
-
-	char *s = get_next_line(fd);
-
-	printf("%s", s);
+	char *s1 = "hello\nworld";
+	// char *s2 = "world";
+	char *r = after_new_line(s1);
+	
+	printf("%s", r);
 }

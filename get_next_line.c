@@ -6,11 +6,25 @@
 /*   By: moben-ta <moben-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 17:03:20 by moben-ta          #+#    #+#             */
-/*   Updated: 2024/11/16 17:03:21 by moben-ta         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:30:03 by moben-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static int	check_new_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0' && line)
+	{
+		if (line[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 char	*get_next_line(int fd)
 {
