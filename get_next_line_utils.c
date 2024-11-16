@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moben-ta <moben-ta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/16 17:02:59 by moben-ta          #+#    #+#             */
+/*   Updated: 2024/11/16 17:08:12 by moben-ta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
@@ -15,16 +27,27 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		s1_len;
 	int		s2_len;
 	char	*tmp;
+	int		i;
+	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
+	if (s1_len == 0 && s2_len == 0)
+		return (NULL);
 	tmp = (char *)malloc((s1_len + s2_len) * sizeof(char) + 1);
 	if (!tmp)
 		return (NULL);
-	ft_strlcpy(tmp, s1, s1_len + 1);
-	ft_strlcat(tmp + s1_len, s2, s2_len + 1);
+	i = 0;
+	while (i < s1_len)
+		tmp[i++] = s1[i++];
+	j = 0;
+	while (i < s1_len + s2_len)
+		tmp[i++] = s2[j++];
+	tmp[i] = '\0';
+	free(s1);
+	free(s2);
 	return (tmp);
 }
 
@@ -99,31 +122,3 @@ char	*before_new_line(char *line)
 	free(line);
 	return (tmp);
 }
-// char	*ft_strjoin(char *s1, char *s2)
-// {
-// 	int		j;
-// 	int		count;
-// 	char	*p;
-// 	int		len_s1;
-// 	int		len_s2;
-
-// 	j = 0;
-// 	count = 0;
-// 	len_s1 = ft_strlen(s1);
-// 	len_s2 = ft_strlen(s2);
-// 	if (len_s1 == 0 && len_s2 == 0)
-// 		return (0);
-// 	p = malloc(len_s1 + len_s2 + 1);
-// 	if (!p)
-// 		return (0);
-// 	while (count < len_s1)
-// 	{
-// 		p[count] = s1[count];
-// 		count++;
-// 	}
-// 	while (count < len_s1 + len_s2)
-// 		p[count++] = s2[j++];
-// 	p[count] = '\0';
-// 	free(s1);
-// 	return (p);
-// }
