@@ -6,7 +6,7 @@
 /*   By: moben-ta <moben-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 17:02:59 by moben-ta          #+#    #+#             */
-/*   Updated: 2024/11/16 17:08:12 by moben-ta         ###   ########.fr       */
+/*   Updated: 2024/11/16 17:21:07 by moben-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		s1_len;
 	int		s2_len;
@@ -41,13 +41,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	i = 0;
 	while (i < s1_len)
-		tmp[i++] = s1[i++];
+	{
+		tmp[i] = s1[i];
+		i++;
+	}
 	j = 0;
 	while (i < s1_len + s2_len)
 		tmp[i++] = s2[j++];
 	tmp[i] = '\0';
-	free(s1);
-	free(s2);
+	// free(s1);
+	// free(s2);
 	return (tmp);
 }
 
@@ -77,7 +80,7 @@ char	*after_new_line(char *line)
 	while (line[i] != '\n' && line[i] != '\0')
 		i++;
 	if (!(tmp = malloc(i + 2)))
-		return NULL;
+		return (NULL);
 	j = 0;
 	while (line[j] != '\n' && line[j] != '\0')
 	{
@@ -90,7 +93,7 @@ char	*after_new_line(char *line)
 		j++;
 	}
 	tmp[j] = '\0';
-	free(line);
+	// free(line);
 	return (tmp);
 }
 
@@ -119,6 +122,6 @@ char	*before_new_line(char *line)
 	while (line[i] != '\0')
 		tmp[k++] = line[i++];
 	tmp[k] = '\0';
-	free(line);
+	// free(line);
 	return (tmp);
 }
