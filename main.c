@@ -6,9 +6,10 @@ int	main()
 {
 	int fd = open("med.txt", O_RDONLY);
 	char *s ;
-	while (s != '\0')
-	{
-		s = get_next_line(fd);
-		printf("%s", s);
-	}
+	s = get_next_line(fd);
+	printf("%s", s);
+
+	s = get_next_line(fd);
+	printf("%s", s);
+
 }
