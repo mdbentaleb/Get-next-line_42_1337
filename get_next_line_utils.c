@@ -59,7 +59,7 @@ char	*after_new_line(char *line)
 	while (line[j] != '\n' && line[j] != '\0')
 	{
 		tmp[j] = line[j];
-		j++:
+		j++;
 	}
 	if (line[j] == '\n')
 	{
@@ -67,6 +67,35 @@ char	*after_new_line(char *line)
 		j++;
 	}
 	tmp[j] = '\0';
+	free(line);
+	return (tmp);
+}
+
+char	*before_new_line(char *line)
+{
+	char	*tmp;
+	int		i;
+	int		j;
+	int		k;
+
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (line[i] != '\n' && line[i] != '\0')
+		i++;
+	if (line[i] == '\n')
+		i++;
+	j = 0;
+	while (line[j] != '\0')
+		j++;
+	if (j - i <= 0)
+		return (NULL);
+	if (!(tmp = malloc((j - i) + 1)))
+		return (NULL);
+	k = 0;
+	while (line[i] != '\0')
+		tmp[k++] = line[i++];
+	tmp[k] = '\0';
 	free(line);
 	return (tmp);
 }
