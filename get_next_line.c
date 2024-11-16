@@ -24,6 +24,6 @@ char	*get_next_line(int fd)
 		if (check_new_line(line))
 			break ;
 	}
-	remain = after_new_line();
+	remain = after_new_line(line);
 	return (before_new_line(line));
 }
