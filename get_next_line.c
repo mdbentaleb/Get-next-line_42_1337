@@ -6,11 +6,11 @@ char	*read_append(char *rest, char *buf, int fd)
 	int		br;
 
 	br = 1;
-	while (br)
+	while (br != '\0')
 	{
 		br = read(fd, buf, BUFFER_SIZE);
 		if (br == -1)
-			return (0);
+			return (NULL);
 		else if (br == 0)
 			break ;
 		buf[br] = '\0';
@@ -35,7 +35,7 @@ char	*dikchi_lib9a(char *line)
 	while (line[count] != '\n' && line[count] != '\0')
 		count++;
 	if (line[count] == '\0' || line[1] == '\0')
-		return (0);
+		return (NULL);
 	rest = ft_substr(line, count + 1, ft_strlen(line) - count);
 	if (rest[0] == '\0')
 	{
@@ -52,16 +52,16 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*rest;
 
-	if (fd < 0 || fd <= 0)
-		return (0);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (0);
+		return (NULL);
 	line = read_append(rest, buffer, fd);
 	free(buffer);
 	buffer = NULL;
 	if (!line)
-		return (0);
+		return (NULL);
 	rest = dikchi_lib9a(line);
 	return (line);
 }

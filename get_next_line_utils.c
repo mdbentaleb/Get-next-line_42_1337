@@ -1,8 +1,8 @@
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -15,8 +15,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*tmp;
 	size_t	i;
 
-	if (!s || start >= ft_strlen(s))
-		return (NULL);
 	tmp = (char *)malloc(len * sizeof(char) + 1);
 	if (!tmp)
 		return (NULL);
@@ -52,8 +50,6 @@ char	*ft_strdup(const char *s)
 	int		len;
 	char	*tmp;
 
-	if (!s)
-		return (NULL);
 	i = 0;
 	len = ft_strlen(s);
 	tmp = (char *)malloc(sizeof(char) * (len + 1));
