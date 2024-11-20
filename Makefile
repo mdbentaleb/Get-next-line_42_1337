@@ -16,7 +16,7 @@ ${NAME}: ${OBJ}
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf ${OBJ} ${OBJBONUS}
+	rm -rf ${OBJ}
 
 fclean: clean
 	rm -rf ${NAME}
