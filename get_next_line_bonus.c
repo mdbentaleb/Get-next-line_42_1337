@@ -50,7 +50,7 @@ char	*get_next_line(int fd)
 {
 	char		*buffer;
 	char		*line;
-	static char	*rest[1024];
+	static char	*rest[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
