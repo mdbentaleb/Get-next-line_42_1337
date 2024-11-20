@@ -1,6 +1,6 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-char	*read_append(char *rest, char *buf, int fd)
+char	*read_append(char **rest, char *buf, int fd)
 {
 	char	*tmp;
 	int		br;
@@ -14,16 +14,16 @@ char	*read_append(char *rest, char *buf, int fd)
 		else if (br == 0)
 			break ;
 		buf[br] = '\0';
-		if (!rest)
-			rest = ft_strdup("");
-		tmp = rest;
-		rest = ft_strjoin(tmp, buf);
+		if (!rest[fd])
+			rest[fd] = ft_strdup("");
+		tmp = rest[fd];
+		*rest = ft_strjoin(tmp, buf);
 		free(tmp);
 		tmp = NULL;
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
-	return (rest);
+	return (*rest);
 }
 
 char	*dikchi_lib9a(char *line)
@@ -50,7 +50,7 @@ char	*get_next_line(int fd)
 {
 	char		*buffer;
 	char		*line;
-	static char	*rest[OPEN_MAX];
+	static char	*rest[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
