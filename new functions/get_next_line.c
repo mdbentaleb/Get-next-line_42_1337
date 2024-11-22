@@ -24,7 +24,11 @@ static char	*read_append(char *rest, char *buf, int fd)
 	{
 		br = read(fd, buf, BUFFER_SIZE);
 		if (br == -1)
+		{
+			free(buf);
+			free(rest);
 			return (NULL);
+		}
 		if (br == 0)
 			break ;
 		buf[br] = '\0';
@@ -48,10 +52,12 @@ static char	*dikchi_lib9a(char *line)
 	char	*rest;
 	size_t	count;
 
+	if (!line || !*line)
+		return (NULL);
 	count = 0;
 	while (line[count] != '\n' && line[count] != '\0')
 		count++;
-	if (line[count])
+	if (!line[count])
 		return (NULL);
 	rest = ft_substr(line, count + 1, ft_strlen(line) - count);
 	if (!rest)
