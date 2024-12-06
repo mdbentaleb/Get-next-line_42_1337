@@ -24,5 +24,5 @@ To get started, ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/mdbentaleb/Get-next-line_42_1337.git
-cd Get_next_line_42_1337
+git clone https://github.com/mdbentaleb/Get_next_line_42.git
+cd Get_next_line_42
